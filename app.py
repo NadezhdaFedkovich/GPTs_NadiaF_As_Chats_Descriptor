@@ -41,6 +41,8 @@ def get_messages_by_chat():
         cursor.close()
         conn.close()
 
+        print(f"limit={limit}, offset={offset}, len(messages)={len(messages)}")
+
         # Возвращаем результат в новом формате
         return jsonify({
             "messages": messages,
