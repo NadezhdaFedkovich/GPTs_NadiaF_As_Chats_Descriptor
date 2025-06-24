@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: Astrologer Messages API
+  version: 1.0.0
+  description: Получение сообщений по chat_id из таблицы astrologer_messages
+servers:
+  - url: http://37.27.109.56:5000
+    description: Прямое подключение к API на твоём сервере
+paths:
+  /messages:
+    get:
+      operationId: getMessagesByChatId
+      summary: Получить список сообщений по chat_id
+      parameters:
+        - name: chat_id
+          in: query
+          required: true
+          description: Идентификатор чата для запроса сообщений
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Список сообщений в чате
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    message:
+                      type: string
+                    chat_id:
+                      type: integer
+                    sender_id:
+                      type: integer
+                    recipient_id:
+                      type: integer
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    is_answered:
+                      type: boolean
+                      nullable: true
+                    is_viewed:
+                      type: boolean
+                      nullable: true
+                    view_time:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    is_viewed_by_user:
+                      type: boolean
+                      nullable: true
+                    is_blurred:
+                      type: boolean
+                      nullable: true
+                    metadata:
+                      type: string
+                      nullable: true
