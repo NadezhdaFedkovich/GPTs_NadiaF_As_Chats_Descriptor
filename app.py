@@ -30,7 +30,7 @@ def get_messages_by_chat():
 
         # Получаем нужную порцию сообщений
         cursor.execute(
-            "SELECT * FROM astrologer_messages WHERE chat_id = %s ORDER BY id ASC LIMIT %s OFFSET %s",
+            "SELECT * FROM astrologer_messages WHERE chat_id = %s ORDER BY created_at ASC LIMIT %s OFFSET %s",
             (chat_id, limit, offset)
         )
         messages = cursor.fetchall()
